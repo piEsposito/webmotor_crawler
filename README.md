@@ -1,4 +1,4 @@
-# WebMotor crawler in Go
+# WebMotors crawler in Go
 
 A very fast, scalable and extendible crawler for webmotors.com based in concurrent goroutine requests.
 
