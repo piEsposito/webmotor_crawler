@@ -6,9 +6,9 @@ import (
 	"sync"
 )
 
-func FeedChannel(page_nmr int, c chan int, wg *sync.WaitGroup) {
+func FeedChannel(page_start int, page_nmr int, c chan int, wg *sync.WaitGroup) {
 
-	for i := 0; i < page_nmr; i++ {
+	for i := page_start; i < page_nmr; i++ {
 		c <- i
 	}
 	wg.Done()

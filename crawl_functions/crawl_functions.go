@@ -17,7 +17,7 @@ func CrawlRoutine(wg *sync.WaitGroup, c chan int) {
 		TE:                        "Trailers",
 		Upgrade_insecure_requests: "1",
 		User_agent:                "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:72.0) Gecko/20100101 Firefox/72.0",
-		ProxyUrl:                  "socks5://127.0.0.1:9150",
+		ProxyUrl:                  "socks5://96.44.133.110:58690",
 	}
 
 	client := head.GenerateNoProxiedClient()

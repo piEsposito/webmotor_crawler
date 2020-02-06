@@ -14,12 +14,13 @@ func main() {
 
 	//SETTING WG AND CHANNEL
 	var wg sync.WaitGroup
-	const PAGE_NUMBER int = 5
-	const ROUTINE_NUMBER int = 5
+	const PAGE_START int = 7318
+	const PAGE_NUMBER int = 20000
+	const ROUTINE_NUMBER int = 100
 	c := make(chan int, PAGE_NUMBER)
 
 	wg.Add(1)
-	go crawl_functions.FeedChannel(PAGE_NUMBER, c, &wg)
+	go crawl_functions.FeedChannel(PAGE_START, PAGE_NUMBER, c, &wg)
 	wg.Wait()
 
 	fmt.Println("Channel fed with page numbers")
