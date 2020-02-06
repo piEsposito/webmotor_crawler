@@ -22,7 +22,7 @@ func main() {
 	go crawl_functions.FeedChannel(PAGE_NUMBER, c, &wg)
 	wg.Wait()
 
-	fmt.Println("got here")
+	fmt.Println("Channel fed with page numbers")
 
 	for i := 0; i < ROUTINE_NUMBER; i++ {
 
