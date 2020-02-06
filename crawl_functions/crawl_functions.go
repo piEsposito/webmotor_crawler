@@ -7,7 +7,10 @@ import (
 )
 
 func CrawlRoutine(wg *sync.WaitGroup, c chan int) {
-
+	/*
+		This is our crawl routine function. It creates a client and request by taking info from the channel
+		We use independent objects to have no blocking on our code execution
+	*/
 	head := query_handler.QueryClient{
 		Accept:                    "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
 		Accept_encoding:           "gzip, deflate, br",
@@ -24,7 +27,7 @@ func CrawlRoutine(wg *sync.WaitGroup, c chan int) {
 	//wg.Add(1)
 
 	for len(c) > 0 {
-
+		//Perform the crawl operations as long as the channel is populated
 		link, path := CreateLink(<-c)
 		fmt.Println(link)
 		req := head.CreateRequest(link)

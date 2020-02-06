@@ -7,12 +7,13 @@ import (
 	"golang.org/x/net/proxy"
 )
 
-/*
-struct for header on our webmotors queries
-it is our way through capcha and into the API
-*/
-
 type QueryClient struct {
+	/*
+		struct for header on our webmotors queries
+		it is our way through capcha and into the API
+
+		we can also set a proxy url if we want to disguise our IP
+	*/
 	Accept                    string
 	Accept_encoding           string
 	Accept_language           string
@@ -24,10 +25,11 @@ type QueryClient struct {
 	ProxyUrl                  string
 }
 
-//generate the http client, with tor proxy if necessary
-
 func (client_info QueryClient) GenerateClient() *http.Client {
-
+	/*
+		This method allows our QueryClient to create a http client make the requests
+		This one proxies our connection
+	*/
 	torProxy := client_info.createProxy()
 	tbTransport := &http.Transport{Dial: torProxy.Dial}
 	client := &http.Client{Transport: tbTransport}
@@ -35,8 +37,10 @@ func (client_info QueryClient) GenerateClient() *http.Client {
 
 }
 
-//Tor Proxy if user wants to
 func (client_info QueryClient) createProxy() proxy.Dialer {
+	/*
+		If we select to generate a proxied client, this method creates the client proxy
+	*/
 	proxyUrl, err := url.Parse(client_info.ProxyUrl)
 	if err != nil {
 		panic(err)
@@ -54,13 +58,18 @@ func (client_info QueryClient) createProxy() proxy.Dialer {
 }
 
 func (client_info QueryClient) GenerateNoProxiedClient() *http.Client {
-
+	/*
+		If we want to use no proxy, just generate a vanilla client
+	*/
 	client := &http.Client{}
 	return client
 
 }
 
 func (client_info QueryClient) CreateRequest(url string) *http.Request {
+	/*
+		This method creates the request from the URL and QueryClient header info
+	*/
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		panic(err)

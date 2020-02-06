@@ -7,7 +7,9 @@ import (
 )
 
 func FeedChannel(page_start int, page_nmr int, c chan int, wg *sync.WaitGroup) {
-
+	/*
+		This is a auxiliary function to feed our channel with page ids for start and end
+	*/
 	for i := page_start; i < page_nmr; i++ {
 		c <- i
 	}
@@ -16,7 +18,9 @@ func FeedChannel(page_start int, page_nmr int, c chan int, wg *sync.WaitGroup) {
 }
 
 func CreateLink(idx int) (string, string) {
-
+	/*
+		This function creates a link for the json using the page id.
+	*/
 	nmr := strconv.Itoa(idx)
 
 	path := fmt.Sprintf("%s.json", nmr)
