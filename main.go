@@ -14,7 +14,7 @@ func main() {
 
 	//SETTING WG AND CHANNEL
 	var wg sync.WaitGroup
-	const PAGE_START int = 7318
+	const PAGE_START int = 13782
 	const PAGE_NUMBER int = 20000
 	const ROUTINE_NUMBER int = 100
 	c := make(chan int, PAGE_NUMBER)
