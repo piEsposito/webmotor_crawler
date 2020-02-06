@@ -9,6 +9,14 @@ import (
 
 func main() {
 
+	/*
+		in our main crawling function we do the 2 main tasks
+
+		1. Populate our channel with the page numbers
+		2. Create the goroutines to crawl from the channel IDs
+
+	*/
+
 	//to measure time
 	start := time.Now()
 
@@ -25,6 +33,7 @@ func main() {
 
 	fmt.Println("Channel fed with page numbers")
 
+	//Creating the goroutines
 	for i := 0; i < ROUTINE_NUMBER; i++ {
 
 		wg.Add(1)
@@ -34,6 +43,7 @@ func main() {
 
 	wg.Wait()
 
+	//Some time computation here
 	elapsed := time.Since(start)
 	fmt.Println("Crawling took %s", elapsed)
 }
